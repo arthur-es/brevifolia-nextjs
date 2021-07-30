@@ -1,4 +1,51 @@
 ---
 label: Post
 hide_body: false
-fields: []
+fields:
+- name: titulo
+  type: text
+  config:
+    required: true
+    min: 10
+  label: Título
+  description: O título do post do blog
+- name: campanha_ativa
+  type: boolean
+  label: Campanha ativa
+  description: A campanha está ativa no momento?
+  default: true
+- name: conteudo
+  type: field_group
+  config: {}
+  fields:
+  - name: sumario
+    type: textarea
+    default: ''
+    config:
+      required: true
+      wysiwyg: false
+      schema:
+        format: markdown
+    label: Sumário
+    description: Resumo do post
+  - name: data_de_publicacao
+    type: datetime
+    label: Data de publicação
+    description: ''
+    config:
+      required: true
+      date_format: DD/MM/YYYY
+      time_format: 
+      display_utc: false
+    default: now
+  - name: tags
+    type: list
+    config:
+      use_select: false
+      min: 
+      max: 
+    label: Tags
+  label: Conteudo
+  showOnly:
+    field: campanha_ativa
+    value: true
